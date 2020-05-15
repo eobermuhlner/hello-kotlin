@@ -7,20 +7,19 @@ import kotlin.properties.Delegates
 fun main(args: Array<String>) {
     println("Hello Kotlin")
 
-    exampleAssetmax()
-
-//    exampleVariables()
-//    exampleNullSafe()
-//    exampleForLoop()
-//    exampleSimpleLambda()
-//    exampleClass()
-//    exampleDataClass()
-//    exampleProperties()
-//    exampleOperators()
-//    exampleExtensionFunction()
-//    exampleWhen()
-//    exampleScopeFunctions()
-//    examplePropertyDelegate()
+    exampleVariables()
+    exampleNullSafe()
+    exampleFunctionParameters()
+    exampleForLoop()
+    exampleSimpleLambda()
+    exampleClass()
+    exampleDataClass()
+    exampleProperties()
+    exampleOperators()
+    exampleExtensionFunction()
+    exampleWhen()
+    exampleScopeFunctions()
+    examplePropertyDelegate()
 
     // Additional topics:
     // - types: Unit, Nothing, Any
@@ -32,13 +31,6 @@ fun main(args: Array<String>) {
     // - coroutines
     // - decomposition
     // - scope functions (let, run, with, apply, also)
-}
-
-data class Demo(val foo: String)
-
-fun exampleAssetmax() {
-    val demo = Demo("bar2")
-    println(demo.hashCode())
 }
 
 //----------------------------------------------------------------------------------------------
@@ -75,6 +67,16 @@ fun exampleNullSafe() {
     beta = str?.length // assigns null
 
     //beta = str!!.length // throws NPE
+}
+
+//----------------------------------------------------------------------------------------------
+
+fun message(greeting: String = "Hello", name: String = "guest") = "$greeting $name"
+
+fun exampleFunctionParameters() {
+    println(message()) // "Hello guest"
+    println(message("Goodbye")) // "Goodbye guest"
+    println(message(greeting = "Goodbye", name = "Eric")) // "Goodbye Eric"
 }
 
 //----------------------------------------------------------------------------------------------
