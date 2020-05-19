@@ -1,3 +1,5 @@
+@file:JvmName("HelloKotlin")
+
 package ch.obermuhlner.hello.kotlin
 
 import kotlin.math.sin

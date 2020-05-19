@@ -8,8 +8,15 @@ application {
     mainClassName = "ch.obermuhlner.hello.kotlin.HelloKotlinKt"
 }
 
+tasks.named<Test>("test") {
+    useJUnitPlatform()
+}
+
 dependencies {
-    compile(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
+
+    testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.6.2")
+    testRuntime("org.junit.jupiter", "junit-jupiter-engine", "5.6.2")
 }
 
 repositories {

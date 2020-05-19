@@ -17,12 +17,14 @@ Best Kotlin features:
     - default values
     - named arguments
     - last argument can be written outside `()` if lambda function
+- destructuring
+    - assign components of an instance into several variables - `val (name, age) = person`
 - extension functions
     - enhance class functionality even if you have no control over the code
 - operator overloading
     - useful for equality and comparisons (`==` `!=` and `<` `<=` `>` `>=`)
-    - useful for math classes (`+` `-` `*` `/`)
-    - useful for containers and DSL (`()`, `[i]`)
+    - useful for math classes (`+` `-` `*` `/` `%` `!` `..` `++` `--` `+=` ...)
+    - useful for containers and DSL (`()`, `[]`)
     - (please use in moderation)
 - compact class declarations
     - constructor with properties as part of class declaration
@@ -32,6 +34,9 @@ Best Kotlin features:
 - good handling of immutable vs. mutable states
     - language design is biased in favor of immutability
     - mutable and immutable collection classes
+- improved generics
+    - `in` and `out` instead of producer-extends and consumer-super
+    - use `reified` to prevent type erasure in `inline` functions 
 - language allows designing nice DSLs
     - generally less clutter (see all of the above)
     - lambda function with receiver

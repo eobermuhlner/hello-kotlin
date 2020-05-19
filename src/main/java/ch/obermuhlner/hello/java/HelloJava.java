@@ -1,6 +1,6 @@
 package ch.obermuhlner.hello.java;
 
-import ch.obermuhlner.hello.kotlin.HelloKotlinKt;
+import ch.obermuhlner.hello.kotlin.HelloKotlin;
 import ch.obermuhlner.hello.kotlin.Person;
 import ch.obermuhlner.hello.kotlin.Vector;
 
@@ -8,7 +8,7 @@ public class HelloJava {
     public static void main(String[] args) {
         System.out.println("Hello Java");
 
-        HelloKotlinKt.exampleForLoop();
+        HelloKotlin.exampleForLoop();
 
         exampleDataClass();
         exampleOperators();
