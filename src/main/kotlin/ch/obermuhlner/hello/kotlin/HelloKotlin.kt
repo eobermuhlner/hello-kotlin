@@ -121,7 +121,7 @@ fun exampleSimpleLambda() {
         }
     }
 
-    // allowed to omit empty brackets in function call
+    // allowed to omit empty brackets in function call with a lambda
     measure {
         for (i in 0..10000) {
             sin(1.23)
@@ -157,14 +157,15 @@ fun exampleClass() {
 
 //----------------------------------------------------------------------------------------------
 
-data class Person (val name: String, val age: Int)
+data class PersonExample (val name: String, val age: Int)
 // data class declares public fields in constructor
 // implements hashCode() and equals() and toString()
 // implements componentN() for decomposition
+// implements copy() with arguments to override the arguments in the constructor
 
 fun exampleDataClass() {
-    val jim = Person("Jim", 18)
-    val joe = Person("Joe", 40)
+    val jim = PersonExample("Jim", 18)
+    val joe = PersonExample("Joe", 40)
 
     println(jim)
     println(joe)
@@ -173,6 +174,8 @@ fun exampleDataClass() {
     for ((name, age) in listOf(jim, joe)) {
         println("name = $name, age = $age")
     }
+
+    val jim2 = jim.copy(age = 99)
 }
 
 //----------------------------------------------------------------------------------------------
@@ -212,14 +215,14 @@ fun exampleProperties() {
 
 //----------------------------------------------------------------------------------------------
 
-data class Vector (val x: Double, val y: Double) : Comparable<Vector> {
+data class VectorExample (val x: Double, val y: Double) : Comparable<VectorExample> {
     val length get() = sqrt(x*x + y*y) // property with other getter allowed
 
-    operator fun plus(v: Vector): Vector {
-        return Vector(x+v.x, y+v.y)
+    operator fun plus(v: VectorExample): VectorExample {
+        return VectorExample(x+v.x, y+v.y)
     }
-    operator fun times(factor: Double): Vector {
-        return Vector(x*factor, y*factor)
+    operator fun times(factor: Double): VectorExample {
+        return VectorExample(x*factor, y*factor)
     }
     operator fun get(index: Int): Double {
         return when(index) {
@@ -228,14 +231,14 @@ data class Vector (val x: Double, val y: Double) : Comparable<Vector> {
             else -> 0.0
         }
     }
-    override fun compareTo(other: Vector): Int {
+    override fun compareTo(other: VectorExample): Int {
         return length.compareTo(other.length)
     }
 }
 
 fun exampleOperators() {
-    val v1 = Vector(1.0, 2.0)
-    val v2 = Vector(3.0, 4.0)
+    val v1 = VectorExample(1.0, 2.0)
+    val v2 = VectorExample(3.0, 4.0)
     val v3 = v1 + v2
     val v4 = v1 * 3.0
 
@@ -260,14 +263,14 @@ fun exampleOperators() {
 
 fun String.bracket() = "($this)"
 
-operator fun Vector.times(factor: Int) = this * factor.toDouble()
+operator fun VectorExample.times(factor: Int) = this * factor.toDouble()
 
 fun exampleExtensionFunction() {
     val str = "hello";
 
     println(str.bracket())
 
-    val v1 = Vector(1.0, 2.0)
+    val v1 = VectorExample(1.0, 2.0)
     val v2 = v1 * 3
 
     println(v2)
@@ -310,7 +313,7 @@ fun exampleWhen() {
     println(castingWhen(99))
     println(castingWhen(2.0))
     println(castingWhen("Hello"))
-    println(castingWhen(Person("Jim", 19)))
+    println(castingWhen(PersonExample("Jim", 19)))
 
     println(noArgumentWhen(5, 5))
     println(noArgumentWhen(55, 55))
