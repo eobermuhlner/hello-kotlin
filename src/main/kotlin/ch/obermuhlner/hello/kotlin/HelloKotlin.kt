@@ -2,6 +2,7 @@
 
 package ch.obermuhlner.hello.kotlin
 
+import javax.script.ScriptEngineManager
 import kotlin.math.sin
 import kotlin.math.sqrt
 import kotlin.properties.Delegates
@@ -9,19 +10,20 @@ import kotlin.properties.Delegates
 fun main(args: Array<String>) {
     println("Hello Kotlin")
 
-    exampleVariables()
-    exampleNullSafe()
-    exampleFunctionParameters()
-    exampleForLoop()
-    exampleSimpleLambda()
-    exampleClass()
-    exampleDataClass()
-    exampleProperties()
-    exampleOperators()
-    exampleExtensionFunction()
-    exampleWhen()
-    exampleScopeFunctions()
-    examplePropertyDelegate()
+//    exampleVariables()
+//    exampleNullSafe()
+//    exampleFunctionParameters()
+//    exampleForLoop()
+//    exampleSimpleLambda()
+//    exampleClass()
+//    exampleDataClass()
+//    exampleProperties()
+//    exampleOperators()
+//    exampleExtensionFunction()
+//    exampleWhen()
+//    exampleScopeFunctions()
+//    examplePropertyDelegate()
+    exampleKotlinScript()
 
     // Additional topics:
     // - types: Unit, Nothing, Any
@@ -376,4 +378,38 @@ fun examplePropertyDelegate() {
     age = 99
     println("age = $age")
     println(map)
+}
+
+//----------------------------------------------------------------------------------------------
+
+fun exampleKotlinScript() {
+    System.setProperty("idea.use.native.fs.for.win", "false")
+
+    val engineManager = ScriptEngineManager()
+    for (e in engineManager.engineFactories) {
+        println(e.engineName)
+    }
+
+    val engine = engineManager.getEngineByExtension("kts")
+
+    engine.eval("val x = 2")
+    val result = engine.eval("x + 1")
+    println("result: $result")
+
+    if (engine is javax.script.Compilable) {
+        val script = engine.compile("2 + 3")
+        val result2 = script.eval()
+        println("result2: $result2")
+    }
+
+    if (engine is javax.script.Compilable) {
+        val script = engine.compile("""
+            import ch.obermuhlner.hello.kotlin.PersonExample
+            
+            val jim = PersonExample("Jim", 18)
+            jim
+        """.trimIndent())
+        val result3 = script.eval()
+        println("result3: $result3")
+    }
 }
